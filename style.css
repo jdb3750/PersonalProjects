@@ -1,0 +1,541 @@
+/* ======================= Variables ======================= */
+:root {
+    --primary-color: #3b240b;
+    --secondary-color: #8b5e3c;
+    --background-color: #f4e6be;
+    --accent-color: #e7d3a8;
+    --highlight-color: #f7e7c0;
+    --font-primary: 'IM Fell English SC', serif;
+    --font-secondary: 'Great Vibes', cursive;
+    --button-bg-color: #d9c6a3;
+    --button-hover-bg-color: var(--background-color);
+    --text-color-light: #ecf0f1;
+    --dice-button-bg: #2c3e50;
+    --dice-button-hover-bg: #34495e;
+}
+
+/* ======================= General Styles ======================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-secondary);
+    margin: 0;
+    padding: 0;
+    background-color: #301a0a;
+    background-image: url('https://www.transparenttextures.com/patterns/old-map.png');
+    background-repeat: repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: var(--primary-color);
+}
+
+header,
+footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+main {
+    width: 80vw;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--background-color);
+    border: 10px solid var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    font-family: var(--font-primary);
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+}
+
+h1,
+h2,
+footer p {
+    font-family: var(--font-primary);
+}
+
+footer {
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ===================== Buttons and Inputs ===================== */
+input,
+button,
+.dice-button,
+.action-button {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 2px solid var(--secondary-color);
+    background-color: var(--button-bg-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input:hover,
+button:hover,
+.dice-button:hover,
+.action-button:hover {
+    background-color: var(--button-hover-bg-color);
+    transform: scale(1.05);
+}
+
+input:active,
+button:active,
+.dice-button:active,
+.action-button:active {
+    transform: scale(0.95);
+}
+
+input {
+    width: 100%;
+}
+
+/* ======================== List Styles ======================== */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: var(--highlight-color);
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================== Checklist Styles ====================== */
+.checklist-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.completed {
+    opacity: 0.6;
+    text-decoration: line-through wavy;
+}
+
+/* =================== PDF Upload and Dice Roller ===================== */
+#pdf-upload,
+#dice-roller {
+    flex: 1;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    border: 4px solid var(--secondary-color);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+#dice-roller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* ================= Checklist and Suggestions ================= */
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+#checklist,
+#real-time {
+    flex: 1;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    border: 4px solid var(--secondary-color);
+    border-radius: 10px;
+}
+
+/* ================ NPC and PC Section Styles ================= */
+#npc-section,
+#pc-section {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f9f4e1;
+    border: 4px solid var(--secondary-color);
+    border-radius: 10px;
+}
+
+.npc-columns,
+.pc-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#npc-list,
+#pc-left-column,
+#npc-details,
+#pc-right-column {
+    background-color: var(--accent-color);
+    padding: 1rem;
+    border-radius: 10px;
+    flex: 1;
+}
+
+#npc-details,
+#pc-right-column {
+    background-color: #fff;
+}
+
+.npc-columns > div,
+.pc-columns > div {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* ================= NPC and PC Item Styles ================== */
+.npc-item,
+.pc-item {
+    background-color: var(--highlight-color);
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-decoration: none; /* Ensure default state has no text decoration */
+    opacity: 1;            /* Ensure default state is fully opaque */
+}
+
+.npc-item.npc-selected,
+.pc-item.npc-selected {
+    border: 2px solid #4a90e2;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* =================== Character Form Styles ================== */
+/* Form Display */
+#character-form {
+    display: none;
+    text-align: center;
+}
+
+/* Input Fields (Keep Original Sizes) */
+#character-form input {
+    width: 100%;
+    max-width: 300px; /* Limit the maximum width */
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    border-radius: 5px;
+    border: 2px solid var(--secondary-color);
+    box-sizing: border-box;
+}
+
+/* Buttons Container */
+#character-form div {
+    /* We can keep the inline style or move it here */
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Buttons within the Character Form */
+#character-form button {
+    flex: 1;
+    max-width: 130px; /* Ensure buttons are not wider than inputs */
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    color: var(--text-color-light);
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Specific Styles for Create and Close Buttons */
+#create-btn {
+    background-color: #4285f4; /* Blue for affirmative action */
+}
+
+#create-btn:hover {
+    background-color: #3367d6;
+}
+
+#close-btn {
+    background-color: #f44336; /* Red for negative action */
+}
+
+#close-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Hover and Active States */
+#character-form button:hover {
+    transform: scale(1.05);
+}
+
+#character-form button:active {
+    transform: scale(0.95);
+}
+
+/* ================= PC Section Button Styles ================= */
+#create-character-btn {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    background-color: var(--button-bg-color);
+    border: 2px solid var(--secondary-color);
+    cursor: pointer;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+#character-list-container {
+    background-color: var(--accent-color);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* =================== Special Highlighting =================== */
+/* Favorite Highlight */
+.npc-item.favorite-highlight {
+    background-color: gold !important;
+}
+
+/* Strikethrough for Dead NPCs */
+.npc-item.sketchy-strikethrough {
+    text-decoration: line-through wavy;
+    opacity: 0.6; /* Adjust transparency as desired */
+}
+
+/* Both Effects Applied */
+.npc-item.favorite-highlight.sketchy-strikethrough {
+    background-color: gold !important;
+    text-decoration: line-through wavy;
+    opacity: 0.6;
+}
+/* =================== Dice Styles =================== */
+#dice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--text-color-light);
+    position: relative;
+}
+
+#dice-canvas {
+    width: 100%;
+    height: 10rem;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#dice-selector {
+    background-color: var(--background-color);
+    border: 2px solid var(--secondary-color);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#dice-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    margin-top: 0.5rem;
+}
+
+.dice-button {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--dice-button-bg);
+    border: none;
+    font-size: 0.8rem;
+    font-family: var(--font-secondary);
+    font-weight: bold;
+    color: var(--text-color-light);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    clip-path: none;
+    text-shadow: none;
+}
+
+.dice-button:hover {
+    background-color: var(--dice-button-hover-bg);
+}
+
+.dice-button:active {
+    transform: scale(0.95);
+}
+
+.action-button {
+    width: 2.5rem;
+    height: 1.5rem;
+    background-color: var(--dice-button-bg);
+    font-size: 0.9rem;
+    font-family: var(--font-primary); /* Use non-script font */
+    color: var(--text-color-light);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    text-shadow: none;
+    transition: transform 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: var(--dice-button-hover-bg);
+}
+
+#clear-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.dice-button.d4-button {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.dice-button.d6-button {
+    border-radius: 5px;
+}
+
+.dice-button.d8-button {
+    clip-path: polygon(50% 0%, 0% 50%, 50% 100%, 100% 50%);
+}
+
+.dice-button.d10-button {
+    clip-path: polygon(50% 0%, 0% 35%, 25% 100%, 75% 100%, 100% 35%);
+}
+
+.dice-button.d12-button {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.dice-button.d20-button {
+    clip-path: polygon(50% 0%, 15% 15%, 0% 50%, 15% 85%, 50% 100%, 85% 85%, 100% 50%, 85% 15%);
+}
+
+.dice-button.d100-button {
+    clip-path: circle(50% at 50% 50%);
+    font-size: 0.7rem;
+}
+
+/* Dice Count Display */
+#dice-count {
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+/* Dice Controls */
+#dice-controls {
+    margin-top: 1rem;
+    background-color: transparent;
+}
+
+/* Roll Button */
+#roll-button {
+    background-color: #4285f4;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#roll-button:hover {
+    background-color: #3367d6;
+}
+
+#total-roll-result {
+    position: absolute;
+    font-size: 4rem;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: var(--text-color-light);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+}
+
+/* =================== Scroll Effects =================== */
+main::before,
+main::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: var(--background-color);
+    left: 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+main::before {
+    top: -20px;
+    border-radius: 50% 50% 0 0;
+}
+
+main::after {
+    bottom: -20px;
+    border-radius: 0 0 50% 50%;
+}
+
+/* =================== Media Queries for Responsiveness =================== */
+@media (max-width: 768px) {
+    .columns,
+    .npc-columns,
+    .pc-columns {
+        flex-direction: column;
+    }
+
+    #npc-list,
+    #npc-details,
+    #pc-left-column,
+    #pc-right-column {
+        width: 100% !important;
+    }
+
+    #dice-selector,
+    #dice-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dice-button,
+    .action-button {
+        width: 2rem;
+        height: 2rem;
+        margin: 0.5rem;
+    }
+}
