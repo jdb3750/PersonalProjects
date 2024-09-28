@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM Tool</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+
+    <!-- External Libraries -->
+    <!-- Include Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <!-- Include Cannon.js for Physics Simulation -->
+    <script src="https://cdn.jsdelivr.net/npm/cannon@0.6.2/build/cannon.min.js" defer></script>
+</head>
+<body>
+    <!-- Main Content -->
+    <main>
+        <!-- Two-Column Layout for PDF Upload and Dice Roller -->
+        <div class="columns">
+            <!-- PDF Upload Section -->
+            <section id="pdf-upload">
+                <h2>Upload a Prewritten Adventure</h2>
+                <label for="fileInput" class="visually-hidden">Choose a PDF file</label>
+                <input type="file" id="fileInput" accept=".pdf">
+                <button id="uploadButton" type="button">Upload PDF</button>
+                <p id="adventure-name">Adventure: Not uploaded</p>
+            </section>
+
+            <!-- Dice Roller Section -->
+            <section id="dice-roller">
+                <div id="dice-container">
+                    <canvas id="dice-canvas"></canvas>
+
+                    <!-- Dice Options -->
+                    <div id="dice-options">
+                        <button class="dice-button d4-button" type="button">d4</button>
+                        <button class="dice-button d6-button" type="button">d6</button>
+                        <button class="dice-button d8-button" type="button">d8</button>
+                        <button class="dice-button d10-button" type="button">d10</button>
+                        <button class="dice-button d12-button" type="button">d12</button>
+                        <button class="dice-button d20-button" type="button">d20</button>
+                        <button class="dice-button d100-button" type="button">d100</button>
+                        <!-- Action Buttons -->
+                        <button id="roll-button" class="action-button" type="button">Roll</button>
+                        <button id="clear-button" class="action-button" type="button">Clear</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Plot Points Checklist and Real-Time Suggestions Columns -->
+        <div class="columns">
+            <!-- Plot Points Checklist Section -->
+            <section id="checklist">
+                <h2>Plot Points Checklist</h2>
+                <ul id="checklistItems"></ul>
+            </section>
+
+            <!-- Real-Time Suggestions Section -->
+            <section id="real-time">
+                <h2>Real-Time Suggestions</h2>
+                <p id="suggestions"></p>
+            </section>
+        </div>
+
+        <!-- NPC Section -->
+        <section id="npc-section">
+            <h2>Relevant NPCs</h2>
+            <div class="npc-columns">
+                <div id="npc-list"></div>
+                <div id="npc-details"></div>
+            </div>
+        </section>
+
+        <!-- Player Characters (PC) Section -->
+        <section id="pc-section">
+            <h2>Player Characters</h2>
+            <div class="pc-columns">
+                <!-- Left Column -->
+                <div id="pc-left-column">
+                    <div style="text-align: center;">
+                        <button id="create-character-btn" type="button">Create Character</button>
+                    </div>
+
+                    <!-- Character Creation Form (Initially Hidden) -->
+                    <form id="character-form" style="display: none; text-align: center;">
+                        <input type="text" id="name" name="name" placeholder="Character Name" required>
+                        <input type="text" id="race" name="race" placeholder="Race" required>
+                        <input type="number" id="level" name="level" min="1" placeholder="Level" required>
+                        <input type="text" id="class" name="class" placeholder="Class" required>
+                    
+                        <!-- Buttons Container with Inline Style for Alignment -->
+                        <div style="display: flex; justify-content: center; gap: 1rem;">
+                            <button type="submit" id="create-btn">Create</button>
+                            <button type="button" id="close-btn">Close</button>
+                        </div>
+                    </form>
+
+                    <!-- Character List -->
+                    <div id="pc-list"></div>
+                </div>
+
+                <!-- Right Column: Character Details Viewer -->
+                <div id="pc-right-column">
+                    <div id="pc-details"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 DM Tool - Built Locally</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
+</body>
+</html>
